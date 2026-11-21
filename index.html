@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f5f0">
+  <title>The Chess Club — Make your move</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="The Chess Club home">
+        <span class="brand-mark">♞</span><span class="brand-name">the chess <b>club</b></span>
+      </a>
+      <div class="topbar-note"><span class="live-dot"></span> YOUR DAILY MOMENT OF CLARITY</div>
+      <button class="icon-button" id="sound-toggle" aria-label="Toggle sound" title="Sound on">♫</button>
+    </header>
+
+    <main>
+      <section class="intro-row">
+        <div>
+          <div class="eyebrow">A LITTLE STRATEGY GOES A LONG WAY</div>
+          <h1>Make your <em>move.</em></h1>
+        </div>
+        <div class="game-stats"><span class="stat-icon">✦</span><span><b id="move-count">01</b><small>MOVE</small></span><i></i><span><b id="game-clock">00:00</b><small>TIME</small></span></div>
+      </section>
+
+      <section class="game-layout" aria-label="Chess game">
+        <div class="board-column">
+          <div class="player-strip opponent-strip">
+            <div class="avatar ai-avatar">♟</div>
+            <div class="player-meta"><b>Chess computer</b><span id="opponent-label">Ready when you are</span></div>
+            <span class="player-rating" id="opponent-rating">—</span>
+          </div>
+          <div class="board-frame">
+            <div class="board" id="board" role="grid" aria-label="Chess board"></div>
+            <div class="promotion-backdrop hidden" id="promotion-dialog" role="dialog" aria-modal="true" aria-label="Choose promotion piece">
+              <div class="promotion-card"><span class="eyebrow">A NEW BEGINNING</span><h2>Promote your pawn</h2><p>Choose the piece it becomes.</p><div class="promotion-options" id="promotion-options"></div></div>
+            </div>
+          </div>
+          <div class="player-strip you-strip">
+            <div class="avatar you-avatar">♙</div>
+            <div class="player-meta"><b>You <span class="you-tag">YOU</span></b><span id="player-label">White · Your turn</span></div>
+            <span class="player-rating">♔</span>
+          </div>
+          <div class="board-caption"><span><span class="caption-dot"></span> Standard chess · White to move</span><button id="flip-board" class="text-button">↻ &nbsp;Flip board</button></div>
+        </div>
+
+        <aside class="side-panel">
+          <div class="panel-heading"><div><div class="eyebrow">YOUR OPPONENT</div><h2>Choose your pace</h2></div><span class="heading-spark">✳</span></div>
+          <div class="difficulty-list" role="group" aria-label="Choose difficulty">
+            <button class="difficulty active" data-level="easy"><span class="level-icon easy-icon">♧</span><span class="level-copy"><b>Easy</b><small>A relaxed warm-up</small></span><span class="level-chevron">›</span></button>
+            <button class="difficulty" data-level="medium"><span class="level-icon medium-icon">♜</span><span class="level-copy"><b>Medium</b><small>A thoughtful challenge</small></span><span class="level-chevron">›</span></button>
+            <button class="difficulty" data-level="hard"><span class="level-icon hard-icon">♛</span><span class="level-copy"><b>Hard</b><small>Bring your best game</small></span><span class="level-chevron">›</span></button>
+          </div>
+
+          <div class="turn-card" id="turn-card"><div class="turn-card-top"><span class="turn-dot"></span><span id="turn-status">Your move</span><span class="turn-badge">WHITE</span></div><p id="turn-detail">Take your time. Every great game starts somewhere.</p></div>
+
+          <div class="panel-section move-section"><div class="section-title"><span>GAME MOVES</span><span class="move-total" id="move-total">0</span></div><div class="move-list" id="move-list"><div class="empty-moves"><span>♘</span><p>Your opening move is waiting.</p></div></div></div>
+
+          <div class="panel-section captured-section"><div class="section-title"><span>CAPTURED PIECES</span><span class="captured-score" id="captured-score"></span></div><div class="captured-row"><span class="captured-label">YOU</span><span class="captured-pieces" id="white-captured">—</span></div><div class="captured-row"><span class="captured-label">AI</span><span class="captured-pieces" id="black-captured">—</span></div></div>
+
+          <div class="action-row"><button class="secondary-button" id="undo-button" disabled><span>↶</span> Undo</button><button class="primary-button" id="new-game-button"><span>＋</span> New game</button></div>
+          <div class="rule-note"><span>♙</span><span>Castling, en passant &amp; pawn promotion are all in play.</span></div>
+        </aside>
+      </section>
+    </main>
+    <footer><span>GOOD GAMES ARE BUILT ONE MOVE AT A TIME.</span><span>EST. YOUR NEXT GREAT GAME</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="game.js"></script>
+</body>
+</html>
