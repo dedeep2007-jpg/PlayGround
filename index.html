@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101513" />
+  <title>Chess — The Quiet Square</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="The Quiet Square home"><span class="brand-mark">♞</span><span>THE QUIET SQUARE</span></a>
+      <div class="topbar-note"><span class="live-dot"></span> YOUR NEXT MOVE AWAITS</div>
+      <button class="icon-button" id="soundToggle" aria-label="Toggle sound" title="Sound on">♫</button>
+    </header>
+
+    <main class="layout">
+      <section class="game-column" aria-label="Chess game">
+        <div class="eyebrow"><span>01</span> THE BOARD</div>
+        <div class="opponent player-row" id="opponentRow">
+          <div class="avatar opponent-avatar">♟</div>
+          <div class="identity"><div class="player-name" id="opponentName">The Quiet Square</div><div class="player-sub" id="opponentSub">A patient opponent</div></div>
+          <div class="captured" id="capturedByYou" aria-label="Pieces captured by you"></div>
+          <div class="clock" id="opponentClock">∞</div>
+        </div>
+        <div class="board-wrap">
+          <div class="rank-labels" id="rankLabels" aria-hidden="true"></div>
+          <div class="board" id="board" role="grid" aria-label="Chess board"></div>
+          <div class="file-labels" id="fileLabels" aria-hidden="true"></div>
+        </div>
+        <div class="player-row you-row" id="youRow">
+          <div class="avatar you-avatar">♙</div>
+          <div class="identity"><div class="player-name">You</div><div class="player-sub" id="youSub">White · to move</div></div>
+          <div class="captured" id="capturedByOpponent" aria-label="Pieces captured by your opponent"></div>
+          <div class="clock" id="youClock">∞</div>
+        </div>
+        <div class="board-footer"><span><kbd>?</kbd> <span>Click a piece, then a square</span></span><span id="gameStatus" aria-live="polite">White to move</span></div>
+      </section>
+
+      <aside class="side-panel">
+        <div class="panel-intro"><div class="eyebrow"><span>02</span> A GAME OF PATIENCE</div><h1>Make your<br><em>move.</em></h1><p>Every square tells a story. What will yours be?</p></div>
+        <div class="mode-card">
+          <div class="section-title">CHOOSE YOUR OPPONENT <span class="tiny-star">✳</span></div>
+          <div class="mode-options" role="group" aria-label="Difficulty">
+            <button class="mode-option" data-level="easy"><span class="mode-dot"></span><span class="mode-label">Easy</span><span class="mode-detail">A gentle warm-up</span></button>
+            <button class="mode-option active" data-level="medium"><span class="mode-dot"></span><span class="mode-label">Medium</span><span class="mode-detail">Thinks a few moves ahead</span></button>
+            <button class="mode-option" data-level="hard"><span class="mode-dot"></span><span class="mode-label">Hard</span><span class="mode-detail">A formidable rival</span></button>
+          </div>
+          <div class="mode-footer"><span>PLAY AS</span><div class="color-choice"><button class="color-chip selected" data-color="w" aria-label="Play as white">♙</button><button class="color-chip" data-color="b" aria-label="Play as black">♟</button></div><span class="color-caption" id="colorCaption">WHITE</span></div>
+        </div>
+        <div class="move-card">
+          <div class="section-title">MOVES <span class="move-count" id="moveCount">0</span><span class="move-spacer"></span><button class="text-action" id="copyPgn" title="Copy game moves">COPY</button></div>
+          <div class="move-list" id="moveList"><div class="empty-moves"><span>♘</span><p>Your first move<br>sets the tone.</p></div></div>
+          <div class="move-controls"><button class="control-button" id="undoButton" title="Undo last move" disabled><span>↶</span> UNDO</button><button class="control-button" id="flipButton" title="Flip board"><span>⇅</span> FLIP</button><button class="control-button new-game" id="newGameButton"><span>＋</span> NEW GAME</button></div>
+        </div>
+        <div class="tip-card"><span class="tip-icon">✦</span><span id="tipText">Control the center. The rest will follow.</span><button id="nextTip" aria-label="Next chess tip">↗</button></div>
+        <div class="panel-foot">A LITTLE SPACE TO THINK <span>·</span> EST. MMXXIV</div>
+      </aside>
+    </main>
+    <footer class="mobile-footer"><span>THE QUIET SQUARE</span><span>TAKE YOUR TIME.</span></footer>
+  </div>
+  <div class="promotion-backdrop" id="promotionBackdrop" hidden><div class="promotion-dialog"><div class="eyebrow">A PAWN'S CHOICE</div><h2>Choose your promotion</h2><div class="promotion-options" id="promotionOptions"></div></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
